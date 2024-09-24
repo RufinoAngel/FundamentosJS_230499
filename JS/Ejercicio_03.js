@@ -41,7 +41,7 @@ console.log(`Los datos del PRODUCTO son: \n
     console.log(Producto_SKU);
     console.log(typeof(Producto_SKU));
 
-
+    console.log("%c2.- Objetos",  style_console);
 // Ahora lo declaramos como un OBJETO
 let Producto =
 {
@@ -59,7 +59,7 @@ let Producto =
 
 //Ahora leemos el Objeto
 
-console.table(Producto);
+console.table(Producto );
 
 // Para acceder a las prioridades del objeto utilizamos un "." y el nombre de la propiedad a leer
 console.log("Accediendo a prioridades especificas del PRODUCTO")
@@ -76,7 +76,7 @@ let Producto2 =
     Nombre:"Lentes para Sol",
     Marca:"Oakley",
     Modelo:"QNTM Kato",
-    precio2:"6829.00",
+    precio:"6829.00",
     Disponibilidad: true,
     Stock:5,
     SKU:"00948D-0356",
@@ -92,21 +92,25 @@ let Comprador ={
     Apellidos:"Rufino Mendoza ",
     Torreo:"angelrufino87@gmail.com",
     PaisOrigen:"México",
-    saldoActual:14000.00
+    saldoActual:40000.00
 }
 
 let Pedido ={
     Producto_Clave:3312,
     Comprador_Clave:455,
     Cantidad:2,
-    Estatus:"Carrito de Compra"
+    Estatus:"Carrito de Compra",
+    TipoPago: "Tarjeta de Credito"
 }
 
 //En Base a los 3 objetos necesitamos  el costo de la compra y si le alcanza con sus saldo a favor
-let {Producto_Precio: Precio2}=Producto2;
+let {Precio:Producto_Precio2}=Producto2;
 let {Cantidad:Pedido_Cantidad}=Pedido;
 let {saldoActual:Cliente_SaldoActual} = Comprador;
 let Costo_Compra =Producto_Precio * Pedido_Cantidad;
+
+
+console.log("%c3.-Destructuración de Objetos ",  style_console);
 
 console.log(`El cliente ha agregado a su carrito de compras ${Pedido_Cantidad} unidades, con un costo total de: ${Costo_Compra} `)
 
@@ -114,3 +118,47 @@ if(Costo_Compra<Cliente_SaldoActual)
     console.log("El cliente tiene saldo suficiente ")
 else 
  console.log("No cuenta con saldo suficiente")
+
+
+
+ console.log("%c4.-Actualización de los valores de las propiedades de UN OBJETO.",  style_console);
+
+console.log(`El objeto actualmente tiene los siguientes valores `)
+console.log(JSON.stringify(Producto2,null,2))
+console.log(`Por cuestiones de inflación el costo del producto ha cambiado y debe ser actualizado... de $6,829.00 a 6,915.00`)
+// Para Modificar el valor de un objeto basta con igualar el nuevo valor de la propiedad deseada.
+Producto2.precio=6915.50;
+console.log(`Los nuevos valores Son`)
+console.log(Producto2);
+
+// ¿Puedo cambiar no solo el valor , sino el tipo de dato de un objeto en JavaScript?
+
+console.log("----------------------------------------------------")
+console.log(`El objeto actualmente tiene los siguientes valores `)
+let tipoDispo = typeof(Producto2.Disponibilidad)
+console.log(`El tipo de dato de la Disponibilidad es : ${tipoDispo}`)
+console.log(JSON.stringify(Producto2,null,2));
+Producto2.Disponibilidad="Si";
+let nuevoTipoDispo= typeof(Producto2.Disponibilidad)
+console.log(Producto2)
+console.log(`El nuevo tipo de dato de la disponibilidad es : ${nuevoTipoDispo}`)
+
+// Agregar nuevas propiedades al objeto
+console.log("%c5.-Agregar nuevas propiedades al Objeto.",  style_console);
+// Para agregar una nueva propiedad utilizaremos el nombre del objeto los corchetes [] y el nuevo de la propiedad con su valor por defecrto
+console.log("Los datos actuales del Comprador son: ")
+console.table(Comprador)
+Comprador[`Direccion`]= "AV. Benito Juárez No. 1525, Interior 4D, Xicotepec de Juárez, Pueba ,México"
+Comprador[`Tipo`]= "Nuevo Cliente"
+Comprador[`ActividadReciente`]= true
+Comprador[`TotalCompras`]=3516.25
+console.log("Despues de haber agregado las propiedades Dirección, Tipo, ActividadReciente y TotalCompras....")
+console.table(Comprador)
+
+// Eliminar propiedades existentes de un Objeto
+console.log("%c6.-Eliminar propiedades existentes de un Objeto",  style_console);
+console.log("La estructura y valores del objeto PEDIDO son previos a la modificación ")
+console.table(Pedido)
+delete Pedido.TipoPago
+console.group("Despues de la modificación")
+console.table(Pedido)

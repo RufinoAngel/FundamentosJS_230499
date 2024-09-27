@@ -87,6 +87,7 @@ let Producto2 =
 }
 
 let Comprador ={
+    ID:8944,
     Clave:455,
     tipo:"Frecuente",
     nombre:"Angel",
@@ -97,7 +98,7 @@ let Comprador ={
 }
 
 let Pedido ={
-    //ID:15,
+    ID:15,
     Producto_Clave:3312,
     Comprador_Clave:455,
     Cantidad:2,
@@ -241,8 +242,47 @@ console.table(Producto);
 console.log("Imprimimos la estructura y valores del Objeto PEDIDO")
 console.table(Pedido);
 //Suponiendo que el usuario ya realizó el pago del pedido se convertira en una VENTA que requiere información de ambos objetos 
+// IMPORTANTE:ASSING , no solo permite la fusion de 2 o mas objetos, tambien muta los objetos originales, perdiendo el valor original del ID en este caso
 const Venta = Object.assign(Producto,Pedido);
 console.log("Consultamos este nuevo objeto Venta ")
 console.table(Venta);
+//Union de Objeto usando SPREAD OPERATOR para evitar la perdida de información con objetos que comparten el mismo nombre en sus propiedades
+
+console.log("%c11.- Unión de Objeto usando el SPREAD OPERATOR (...).",  style_console);
+//Parchamos el error, reiniciando el valor del producto ID al original 
+// Producto.ID=100;
+
+console.table(Producto)
+console.table(Comprador)
+console.table(Pedido)
+
+const Venta2={
+    producto:{...Producto},
+    Comprador:{...Comprador},
+    pedido:{Pedido}
+}
+
+console.log("Fusionamos los 3 objetos en uno nuevo, sin perdidas de Información ")
+console.log(Venta2)
+console.table(Venta2)
 
 
+console.log("%c12.- Mutabilidad POST Unión de Objetos.",  style_console);
+
+//Vamos a verificar el estatus de mutabilidad de los objetos
+console.log("Vamos a verificar el estatus de mutabilidad del objeto Pedido")
+console.log(`Esta el objeto de Pedido Congelado? : ${Object.isFrozen(Pedido)}`)
+console.log(`Esta el objeto de Pedido Congelado? : ${Object.isSealed(Pedido)}`)
+
+console.log("Vamos a verificar el estatus de mutabilidad del objeto Comprador")
+console.log(`Esta el objeto de Pedido Congelado? : ${Object.isFrozen(Comprador)}`)
+console.log(`Esta el objeto de Pedido Congelado? : ${Object.isSealed(Comprador)}`)
+
+console.log("Vamos a verificar el estatus de mutabilidad del objeto Producto")
+console.log(`Esta el objeto de Pedido Congelado? : ${Object.isFrozen(Producto)}`)
+console.log(`Esta el objeto de Pedido Congelado? : ${Object.isSealed(Producto)}`)
+
+//Modificamos la estructura de producto, agregando una nueva propiedad
+Producto['isLegacy']=true; //Productos que van ganando precio,(Son productos que ya no se producen)
+console.log(Producto)
+console.table(Venta2)

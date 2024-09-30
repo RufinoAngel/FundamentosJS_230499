@@ -219,7 +219,7 @@ console.log((fecha_ultimoPost===estatusRelacionSentimental) ?
 console.warn("--- Tipo de Dato FUNCTION (Función)")
 
 // Declaramos una funcion que nos permita recibir un paramento en este caso el nombre de la persona a saludar, y le enviamos un saludo, esta función la asignamos a una constante.
-const saludar =  function(nombre){return `Hola, ${nombre}!`}
+const saludar =  function(nombreUsuario){return `Hola, ${nombreUsuario}!`}
 
 // Invocamos a la función declarada
 console.log(saludar('Angel'));

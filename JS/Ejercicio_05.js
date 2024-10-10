@@ -1,5 +1,6 @@
 //Repaso de ciclos y Sentencias de Control
 
+
 //Estilizacion de los mensajes de salida
 const bg = "linear-gradient(11deg, rgba(0,128,0,1) 0%, rgba(102,255,102,1) 50%, rgba(51,204,51,1) 100%)";
 const style_console = `background: ${bg}; color: black; border-radius: 6px; padding: 4px; font-size: 1.0rem; font-weight: bold`;
@@ -97,29 +98,158 @@ console.log(evaluarMayoriaEdad(edadPersona,"MX"));
 console.log("Evaluando la mayoría de edad de una persona en Estados Unidos...")
 console.log(evaluarMayoriaEdad(edadPersona,"US"));
 
-console.log("%c3.-SWITCH - CASE (Elección por valor definido)",style_console);
+console.log("%c3.- SWITCH - CASE (Elección por valor definido) ",style_console);
 
-//calculando tu generacion en base a tu edad
-let anioNacimiento = 2003;
-let generacion;
+// Calculando tu generación en base a tu edad
 
-switch (true) {
-    case (anioNacimiento < 1968):
-        generacion = "Baby Boomers";
-        break;
-    case (anioNacimiento >= 1968 && anioNacimiento <= 1980):
-        generacion = "Generación X";
-        break;
-    case (anioNacimiento >= 1981 && anioNacimiento <= 1993):
-        generacion = "Millennials";
-        break;
-    case (anioNacimiento >= 1994 && anioNacimiento <= 2010):
-        generacion = "Generación Z";
-        break;
-    default:
-        generacion = "Generación Alpha"; 
+let anioNacimiento= 2003;
+let asignGeneration = (anioNacimiento)=>{
+
+switch (true){
+  case (anioNacimiento>1968): 
+  return "Baby Boomers";
+
+  case (anioNacimiento>1968 && anioNacimiento<=1980): 
+  return "Generación X";
+
+  case (anioNacimiento>1981 && anioNacimiento<=1993): 
+  return "Millenials";
+
+  case (anioNacimiento>1994 && anioNacimiento<=2010): 
+  return "Generación Z";
+
+  case (anioNacimiento>2010 ): 
+  return "Cristalitos";
 }
-console.log(generacion);
+}
+console.log(`Dado que nació en el año 2005 soy de la generación: ${asignGeneration(2005)}`)
+
+console.log("%c4.-Manejo de Excepciones (TRY/ CATCH) ",style_console);
+//En algunas pcaciones existiran errores que no son culpa del programa ,si no del usuario, la red, el SO o incluso de un middleware, pero que si duda debemos controlar para evitar las fallas de ejecución
+console.log("Intentamos dividir : 0/100, el resultado es:")
+try{ //intenta 
+    let result=0/100;  //dividir un netero entre 0
+    console.log(result)
+}
+catch(error){
+    console.log("Ocurrio un error :"+ error.message)
+}
+
+console.log("Intentamos dividir : 0/10, el resultado es:")
+try{ //intenta 
+    let result=10/0;  //dividir un netero entre 0
+    console.log(result)
+}
+catch(error){
+    console.log("Ocurrio un error :"+ error.message)
+}
+
+console.log("Intentamos dividir : a/10, el resultado es:")
+try{ //intenta 
+    let result="a"/0;  //dividir un netero entre 0
+    console.log(result)
+}
+catch(error){
+    console.log("Ocurrio un error :"+ error.message)
+}
+
+console.log("Intentamos dividir la variable a/10, el resultado es:")
+try{ //intenta 
+    let result=a/0;  //dividir un netero entre 0
+    console.log(result)
+}
+catch(error){
+    console.log("Ocurrio un error :"+ error.message)
+}
+
+console.log("Intentamos dividir el valor de la variable x entre el valor de la variable y, el resultado es:")
+try{ //intenta 
+    let x=8,y=2,result=x/y;  //dividir un netero entre 0
+    console.log(result)
+}
+catch(error){
+    console.log("Ocurrio un error :"+ error.message)
+}
+
+console.log("%c5.- Control de Ciclos (BREAK/ CONTINUA)",style_console);
+
+//En algunas ocaciones será importante detener un cliclo de manera abrupta para controlar casos especiales en un ciclo.....
+
+console.log("Vamos a contar del 1 al 10....")
+for(let num=1;num<=10;num++){
+    console.log(num)
+}
+console.log("Ahora necesitamos que si llega al 7 pare de contar... suponiendo que solo por hoy es de mala suerte")
+for( num=1;num<=10;num++){
+    if (num==7)
+        break;
+    console.log(num)
+}
+
+console.log("Ahora necesitamos que si llega al 7 salte ese numero y continue")
+for( num=1;num<=10;num++){
+    if (num==7)
+        continue;
+    console.log(num)
+}
+
+console.log("%c6.- Ciclo Iterativo (FOR) ",style_console);
+//Recorre de manera iterativa (i), de manera incremental o decremental
+
+console.log("Los días de la semana son:")
+let dias =["Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sabado"]
+for(let i=0;i<=dias.length;i++){
+    console.log(dias[i])
+}
+console.log("Ahora vamos a imprimir los meses en orden descendente...")
+const meses=["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"]
+for (let i=11;i >=0; i--){
+    console.log(meses[i])
+}
+
+console.log("%c7.- Ciclo Condicionales -(WHILE)",style_console);
+//Estos ciclos (BUCKLE) dependen de una condición para continuar ejecutandose
 
 
 
+let finDeSemana = false;
+let mensaje = "";
+let j = 0;
+
+while (j < dias.length ) {
+    switch (j) {
+        case 0:
+            finDeSemana = true;
+            mensaje = "Mormingooooo... zzzzZZZZzzz";
+            break;
+        case 1:
+            finDeSemana = false;
+            mensaje = "San Lunes a chambiar";
+            break;
+        case 2:
+            finDeSemana = false;
+            mensaje = "Segundo dia de chamba a darle...";
+            break;
+        case 3:
+            finDeSemana = false;
+            mensaje = "Ombligo de semana !!....";
+            break;
+        case 4:
+            finDeSemana = false;
+            mensaje = "Es juebebes oh si oh si";
+            break;
+        case 5:
+            finDeSemana = false;
+            mensaje = "Es hoooy... es HOOOOOOOOOOOOOOOOOOOOY";
+            break;
+        case 6:
+            finDeSemana = true;
+            mensaje = "Sabadrink ☆*: .｡. o(≧▽≦)o .｡.:*☆";
+            break;
+    }
+    if(!finDeSemana){
+    console.log(`Dia ${j} ${dias[j]}`);
+    console.log(`Mensaje del dia: ${mensaje}`);
+    }
+    j++;
+}

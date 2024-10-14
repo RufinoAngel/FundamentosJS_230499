@@ -223,3 +223,61 @@ for(num = 1; num <= 10; num++)
             continue;}
         console.log(num);
 }
+
+console.log("%c6.- Ciclo Interactivo - (FOR)",  style_console);
+
+//Recorre de manera interativa (i), de incremental a decremental
+
+console.log("Los días de la semana en orden asecendente son: ")
+let dias = ["Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado"]
+
+for(let i=0; i<dias.length; i++)
+    console.log(dias[i])
+
+console.log("Ahora vamos a imprimir los meses en orden descendente...")
+const  meses=["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"]
+for(let i=11; i>=0; i--)
+    console.log(meses[i])
+
+console.log("%c7.- Ciclo Condicionales -(WHILE)",style_console);
+//Estos ciclos (BUCKLE) dependen de una condición para continuar ejecutandose
+let finDeSemana = false;
+let mensaje = "";
+let j = 0;
+while (j < dias.length ) {
+    switch (j) {
+        case 0:
+            finDeSemana = true;
+            mensaje = "Mormingooooo... (_　_)。゜zｚＺ";
+            break;
+        case 1:
+            finDeSemana = false;
+            mensaje = "San Lunes a chambiar";
+            break;
+        case 2:
+            finDeSemana = false;
+            mensaje = "Segundo dia de chamba a darle...";
+            break;
+        case 3:
+            finDeSemana = false;
+            mensaje = "Ombligo de semana !!....";
+            break;
+        case 4:
+            finDeSemana = false;
+            mensaje = "Es juebebes oh si oh si";
+            break;
+        case 5:
+            finDeSemana = false;
+            mensaje = "Es hoooy... es HOOOOOOOOOOOOOOOOOOOOY ( •̀ ω •́ )✧";
+            break;
+        case 6:
+            finDeSemana = true;
+            mensaje = "Sabadrink ☆*: .｡. o(≧▽≦)o .｡.:*☆";
+            break;
+    }
+    if(!finDeSemana){
+    console.log(`Dia ${j} ${dias[j]}`);
+    console.log(`Mensaje del dia: ${mensaje}`);
+    }
+    j++;
+}
